@@ -2,35 +2,24 @@ import React from 'react';
 import {
   StyleSheet,
   View,
-  Text,
 } from 'react-native'
+import Th from './Th'
+import Tr from './Tr'
 import Title from './UI/Title'
 
 export default function Table({ ticker, values }) {
+  const titles = ['last', 'highestBid', 'percentChange']
+
   return (
     <View style={styles.container}>
-      <Title title={ticker} />
-      <Text style={styles.column}>
-        {values.last}
-      </Text>
-      <Text style={styles.column}>
-        {values.highestBid}
-      </Text>
-      <Text style={styles.column}>
-        {values.percentChange}
-      </Text>
+      <Th titles={titles} />
+      <Tr keys={titles} values={values} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    borderWidth: 1,
-    borderColor: 'black',
+    flex: 1
   },
-  column: {
-    borderLeftWidth: 1,
-    borderColor: 'black',
-  }
 })

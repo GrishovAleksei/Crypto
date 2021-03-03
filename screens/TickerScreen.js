@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { fetchTickersRequest } from '../ducks/tickers/actions';
 import { tickersSelector, errorSelector } from '../ducks/tickers/reducers';
 import Table from '../components/Table'
+import Title from '../components/UI/Title';
 
 function TickerScreen(props) {
   const {
@@ -22,12 +23,14 @@ function TickerScreen(props) {
       fetchTickers()
     }, 5000);
     return () => clearInterval(interval);
-    // fetchTickers()
   }, [])
 
   return (
     <View>
-      <Text style={styles.error}>{error}</Text>
+      <Title title={ticker} />
+      {error &&
+        <Text style={styles.error}>{error[0]}</Text>
+      }
       <Table ticker={ticker} values={tickers[ticker]}/>
     </View>
   );
